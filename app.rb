@@ -2,7 +2,7 @@ require "bundler"
 Bundler.require
 
 get '/' do
-  return test = {
+  return this = {
     :hello => 'hello, world'
     }.to_json
 end
