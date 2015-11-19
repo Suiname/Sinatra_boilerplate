@@ -1,8 +1,14 @@
 require "bundler"
 Bundler.require
 
+# get '/' do
+#   return {:hello => 'hello, world'}.to_json
+# end
+
 get '/' do
-  return this = {
-    :hello => 'hello, world'
-    }.to_json
+  erb :hello
+end
+
+get '/worlds' do
+  erb :world
 end
