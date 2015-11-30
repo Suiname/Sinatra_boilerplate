@@ -6,14 +6,50 @@ Bundler.require
 # end
 
 ActiveRecord::Base.establish_connection(
-  {:adapter => '',
-  :database => ''}
+  :adapter => 'postgresql',
+  :database => 'popular_things'
 )
 
 get '/' do
-  erb :hello
+  return Things.all.to_json
 end
 
+get '/create' do
+  i = 3
+  while i>0
+    create_thing
+    i -= 1
+  end
+  return Things.all.to_json
+end
+
+get '/update' do
+
+end
+
+get '/find' do
+  array_of_things = Array.new
+  i = 3
+  while i > 0
+    array_of_things.push(find_thing)
+    i -= 1
+  end
+  return array_of_things.to_json
+end
+
+get '/destroy' do
+
+end
+
+def create_thing
+    new_thing = Things.new
+    new_thing.name = Faker::Hacker.say_something_smart
+    new_thing.save
+end
+
+def find_thing
+  Things.find(rand(Things.all.length))
+end
 # get '/worlds' do
 #   erb :world
 # end
