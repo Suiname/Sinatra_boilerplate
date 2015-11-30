@@ -5,6 +5,11 @@ Bundler.require
 #   return {:hello => 'hello, world'}.to_json
 # end
 
+ActiveRecord::Base.establish_connection(
+  {:adapter => '',
+  :database => ''}
+)
+
 get '/' do
   erb :hello
 end
